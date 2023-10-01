@@ -1,6 +1,7 @@
 <script setup>
 import { useProductStore } from '../store/productStore'
 import { useRouter } from 'vue-router'
+import AddToCart from '../components/AddToCart.vue';
 const router = useRouter()
 const store = useProductStore()
 const goToProductDetail = (productId) => {
@@ -23,8 +24,7 @@ const goToProductDetail = (productId) => {
                                 <p class="text-gray-500">{{ product.name }}</p>
                                 <p class="text-gray-900 font-medium">{{ product.price }}</p>
                             </div>
-                            <button class="mt-2 p-2 w-full bg-gray-100 hover:bg-gray-200 text-gray-950 rounded-md">Add to
-                                cart</button>
+                            <AddToCart :product-id="product.id" />
                         </div>
                     </div>
                 </div>

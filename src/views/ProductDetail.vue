@@ -1,6 +1,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { useProductStore } from '../store/productStore';
+import AddToCart from '../components/AddToCart.vue';
 
 const route = useRoute()
 const id = parseInt(route.params.id)
@@ -20,7 +21,7 @@ const product = productList.getProduct(id)
                 <p class="mt-2 text-gray-600">{{ product.desc_long }}</p>
             </div>
             <div class=" py-4 flex flex-row justify-between">
-                <button class="bg-gray-100 w-full hover:bg-gray-200 py-2 px-4 rounded-md font-medium">Add to cart</button>
+                <AddToCart :product-id="id" />
             </div>
         </div>
     </div>
