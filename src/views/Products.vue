@@ -11,7 +11,8 @@ const goToProductDetail = (productId) => {
 
 <template>
     <div class="mx-auto max-w-7xl p-8">
-        <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <p class="text-2xl font-bold text-gray-900">Products</p>
+        <div class="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <div v-for="product in store.data">
                 <div class="border rounded-md">
                     <div class="flex flex-col">
