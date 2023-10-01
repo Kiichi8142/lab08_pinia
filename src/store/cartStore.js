@@ -5,7 +5,7 @@ export const useCartStore = defineStore("cart", {
 		data: [],
 	}),
 	getters: {
-		getItemCount() {
+		getTotalCount() {
 			return this.data.length;
 		},
 	},

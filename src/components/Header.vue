@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router';
+import { useCartStore } from '../store/cartStore';
 
+const cartStore = useCartStore()
 const menuActive = ref(true)
 
 function toggleMenu() {
@@ -31,7 +33,10 @@ function toggleMenu() {
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Cart</RouterLink>
+                <RouterLink to="/cart" class="text-sm font-semibold leading-6 text-gray-900">Cart {{ cartStore.getTotalCount
+                    > 0 ? cartStore.getTotalCount : ' '
+                }}
+                </RouterLink>
                 <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Order</RouterLink>
             </div>
         </nav>
@@ -59,7 +64,7 @@ function toggleMenu() {
                         <div class="space-y-2 mt-2 flex flex-col">
                             <RouterLink to="/"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                                Cart</RouterLink>
+                                Cart {{ cartCount }}</RouterLink>
                             <RouterLink to="/"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Order</RouterLink>
