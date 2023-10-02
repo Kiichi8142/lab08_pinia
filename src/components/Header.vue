@@ -34,8 +34,7 @@ function toggleMenu() {
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <RouterLink to="/cart" class="text-sm font-semibold leading-6 text-gray-900">Cart {{ cartList.itemCount
-                    > 0 ? cartList.itemCount : ' '
-                }}
+                    > 0 ? ("[" + cartList.itemCount + "]") : ' ' }}
                 </RouterLink>
                 <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Order</RouterLink>
             </div>
@@ -65,7 +64,7 @@ function toggleMenu() {
                             <RouterLink to="/cart"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Cart {{ cartList.itemCount
-                                    > 0 ? cartList.itemCount : ' ' }}</RouterLink>
+                                    > 0 ? ("[" + cartList.itemCount + "]") : ' ' }}</RouterLink>
                             <RouterLink to="/"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Order</RouterLink>

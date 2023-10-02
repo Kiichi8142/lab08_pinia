@@ -4,7 +4,7 @@ import { useCartStore } from '../store/cartStore';
 import { useProductStore } from '../store/productStore';
 
 const cartStore = useCartStore()
-let { cart, getItemPrice } = storeToRefs(cartStore)
+const { cart } = storeToRefs(cartStore)
 const productStore = useProductStore()
 const { getProduct } = storeToRefs(productStore)
 
@@ -43,22 +43,24 @@ function itemRemove(id) {
             </div>
         </div>
         <p v-if="cart.length == 0" class="m-16 text-3xl font-medium text-gray-300 mx-auto">Your cart is empty</p>
-        <div class="p-4 border-t mt-8 flex flex-col divide-y space-y-4">
-            <p class="mt-4 text-gray-900 font-semibold text-2xl">Order summary</p>
-            <div class="p-4 flex justify-between">
-                <p class="text-lg font-base">Subtotal</p>
-                <p class="text-lg font-base">${{ cartStore.totalPrice }}</p>
+        <div>
+            <p class="px-4 mt-4 text-gray-900 font-semibold text-2xl">Order summary</p>
+            <div class="p-2 mt-8 flex flex-col divide-y space-y-4">
+                <div class="p-2 flex justify-between">
+                    <p class="text-gray-700">Subtotal</p>
+                    <p class="text-gray-700">${{ cartStore.totalPrice }}</p>
+                </div>
+                <div class="p-2 flex justify-between">
+                    <p class="text-gray-700">Shipping estimate</p>
+                    <p class="text-gray-700">$5.00</p>
+                </div>
+                <div class="p-2 flex justify-between">
+                    <p class="text-xl font-base">Order total</p>
+                    <p class="text-xl font-base">${{ parseFloat(cartStore.totalPrice) + 5 }}</p>
+                </div>
+                <button
+                    class="p-2 lg:w-40 lg:self-end rounded-md text-white font-medium bg-indigo-500 hover:bg-indigo-400">Checkout</button>
             </div>
-            <div class="p-4 flex justify-between">
-                <p class="text-lg">Shipping estimate</p>
-                <p class="text-lg font-base">$5.00</p>
-            </div>
-            <div class="p-4 flex justify-between">
-                <p class="text-xl font-base">Order total</p>
-                <p class="text-xl font-base">${{ parseFloat(cartStore.totalPrice) + 5 }}</p>
-            </div>
-            <button
-                class="p-2 lg:w-40 lg:self-end rounded-md text-white font-medium bg-indigo-500 hover:bg-indigo-400">Checkout</button>
         </div>
     </div>
 </template>
