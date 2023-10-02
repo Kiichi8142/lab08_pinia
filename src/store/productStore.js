@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 
 export const useProductStore = defineStore("product", {
 	state: () => ({
-		data: [
+		products: [
 			{
 				id: 1,
 				name: "Juice - Orange",
@@ -99,7 +99,7 @@ export const useProductStore = defineStore("product", {
 	getters: {
 		getProduct: (state) => {
 			return (productId) =>
-				state.data.find((product) => product.id === productId);
+				state.products.find((product) => product.id === productId);
 		},
 	},
 });

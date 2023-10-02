@@ -2,8 +2,10 @@
 import { useProductStore } from '../store/productStore'
 import { useRouter } from 'vue-router'
 import AddToCart from '../components/AddToCart.vue';
+import { storeToRefs } from 'pinia';
 const router = useRouter()
-const store = useProductStore()
+const productStore = useProductStore()
+const { products } = storeToRefs(productStore)
 const goToProductDetail = (productId) => {
     router.push({ name: 'product', params: { id: productId } })
 }
@@ -14,7 +16,7 @@ const goToProductDetail = (productId) => {
     <div class="mx-auto max-w-7xl p-8">
         <p class="text-2xl font-bold text-gray-900">Products</p>
         <div class="mt-8 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            <div v-for="product in store.data">
+            <div v-for="product in products">
                 <div class="border rounded-md">
                     <div class="flex flex-col">
                         <img @click="goToProductDetail(product.id)" :src="product.img" alt=""
