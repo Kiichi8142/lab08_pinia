@@ -1,12 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router';
-import { storeToRefs } from 'pinia';
 import { useCartStore } from '../store/cartStore';
 
 const cartList = useCartStore()
-const { getTotalCount } = storeToRefs(cartList)
-
 
 const menuActive = ref(true)
 function toggleMenu() {
@@ -36,8 +33,8 @@ function toggleMenu() {
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
-                <RouterLink to="/cart" class="text-sm font-semibold leading-6 text-gray-900">Cart {{ getTotalCount
-                    > 0 ? getTotalCount : ' '
+                <RouterLink to="/cart" class="text-sm font-semibold leading-6 text-gray-900">Cart {{ cartList.itemCount
+                    > 0 ? cartList.itemCount : ' '
                 }}
                 </RouterLink>
                 <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Order</RouterLink>
@@ -65,9 +62,10 @@ function toggleMenu() {
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 mt-2 flex flex-col">
-                            <RouterLink to="/"
+                            <RouterLink to="/cart"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                                Cart {{ getTotalCount }}</RouterLink>
+                                Cart {{ cartList.itemCount
+                                    > 0 ? cartList.itemCount : ' ' }}</RouterLink>
                             <RouterLink to="/"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Order</RouterLink>
