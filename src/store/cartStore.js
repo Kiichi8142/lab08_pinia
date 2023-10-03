@@ -16,12 +16,11 @@ export const useCartStore = defineStore("cart", () => {
 
 	const totalPrice = computed(() => {
 		const productStore = useProductStore();
-		let sum = 0;
-		cart.value.forEach((item) => {
+		let sum = cart.value.reduce((acc, item) => {
 			const product = productStore.getProduct(item.id);
-			sum += parseFloat(product.price.replace("$", "")) * item.count;
-		});
-		return sum.toFixed(2);
+			return acc + parseFloat(product.price.replace("$", "")) * item.count;
+		}, 0);
+		return sum;
 	});
 
 	function addItem(itemData) {
