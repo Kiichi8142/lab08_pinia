@@ -10,6 +10,7 @@ function toggleMenu() {
     menuActive.value = !menuActive.value
 }
 
+
 </script>
 
 <template>
@@ -61,11 +62,11 @@ function toggleMenu() {
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="space-y-2 mt-2 flex flex-col">
-                            <RouterLink to="/cart"
+                            <RouterLink @click="toggleMenu()" to="/cart"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Cart {{ cartList.itemCount
                                     > 0 ? ("[" + cartList.itemCount + "]") : ' ' }}</RouterLink>
-                            <RouterLink to="/order"
+                            <RouterLink @click="toggleMenu()" to="/order"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Order</RouterLink>
                         </div>

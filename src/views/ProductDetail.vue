@@ -14,7 +14,7 @@ const product = productList.getProduct(id)
     <div class="p-4 max-w-7xl mx-auto flex flex-col lg:p-8">
         <p class="text-2xl font-bold text-gray-900">Product details</p>
         <div class="py-8 flex flex-col lg:flex-row">
-            <img :src="product.img" class="border rounded-md object-cover object-center lg:max-w-xl h-100 w-full">
+            <img :src="product.img" class="border rounded-md object-cover object-center lg:max-w-xl h-80 lg:h-100 w-full">
             <div class="px-4 py-8 md:px-8 flex flex-col w-full">
                 <div class="border-b w-full pb-8">
                     <p class="text-3xl font-bold text-gray-900">{{ product.name }}</p>

@@ -2,15 +2,24 @@
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '../store/cartStore';
 import { useProductStore } from '../store/productStore';
+import { useOrderStore } from '../store/orderStore';
 import { ref, computed } from 'vue';
 
 const cartStore = useCartStore()
+const orderStore = useOrderStore()
 const { cart } = storeToRefs(cartStore)
 const productStore = useProductStore()
 const { getProduct } = storeToRefs(productStore)
 const shippingPrice = computed(() => {
     return cart.value.length === 0 ? 0.0 : 5.0
 })
+
+function checkout() {
+    if (cart.value.length > 0) {
+        orderStore.createOrder(cart.value, parseFloat(cartStore.totalPrice), shippingPrice.value)
+        cartStore.emptyCart()
+    }
+}
 
 function readInput(id, value) {
     cartStore.setItemCount(id, value)
@@ -62,7 +71,7 @@ function itemRemove(id) {
                     <p class="text-xl font-base">Total</p>
                     <p class="text-xl font-base">${{ (parseFloat(cartStore.totalPrice) + shippingPrice).toFixed(2) }}</p>
                 </div>
-                <button
+                <button @click="checkout()"
                     class="p-2 lg:w-40 lg:self-end rounded-md text-white font-medium bg-indigo-500 hover:bg-indigo-400">Checkout</button>
             </div>
         </div>
