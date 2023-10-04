@@ -2,11 +2,15 @@
 import { storeToRefs } from 'pinia';
 import { useCartStore } from '../store/cartStore';
 import { useProductStore } from '../store/productStore';
+import { ref, computed } from 'vue';
 
 const cartStore = useCartStore()
 const { cart } = storeToRefs(cartStore)
 const productStore = useProductStore()
 const { getProduct } = storeToRefs(productStore)
+const shippingPrice = computed(() => {
+    return cart.value.length === 0 ? 0.0 : 5.0
+})
 
 function readInput(id, value) {
     cartStore.setItemCount(id, value)
@@ -48,15 +52,15 @@ function itemRemove(id) {
             <div class="p-2 mt-8 flex flex-col divide-y space-y-4">
                 <div class="p-2 flex justify-between">
                     <p class="text-gray-700">Subtotal</p>
-                    <p class="text-gray-700">${{ cartStore.totalPrice }}</p>
+                    <p class="text-gray-700">${{ cartStore.totalPrice.toFixed(2) }}</p>
                 </div>
                 <div class="p-2 flex justify-between">
                     <p class="text-gray-700">Shipping estimate</p>
-                    <p class="text-gray-700">$5.00</p>
+                    <p class="text-gray-700">${{ shippingPrice.toFixed(2) }}</p>
                 </div>
                 <div class="p-2 flex justify-between">
-                    <p class="text-xl font-base">Order total</p>
-                    <p class="text-xl font-base">${{ parseFloat(cartStore.totalPrice) + 5 }}</p>
+                    <p class="text-xl font-base">Total</p>
+                    <p class="text-xl font-base">${{ (parseFloat(cartStore.totalPrice) + shippingPrice).toFixed(2) }}</p>
                 </div>
                 <button
                     class="p-2 lg:w-40 lg:self-end rounded-md text-white font-medium bg-indigo-500 hover:bg-indigo-400">Checkout</button>
