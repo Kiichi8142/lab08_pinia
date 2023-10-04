@@ -46,6 +46,10 @@ export const useCartStore = defineStore("cart", () => {
 		}
 	}
 
+	function emptyCart() {
+		cart.value = [];
+	}
+
 	return {
 		cart,
 		itemCount,
@@ -54,5 +58,6 @@ export const useCartStore = defineStore("cart", () => {
 		addItem,
 		removeItem,
 		setItemCount,
+		emptyCart,
 	};
 });
