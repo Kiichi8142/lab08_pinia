@@ -36,7 +36,7 @@ function toggleMenu() {
                 <RouterLink to="/cart" class="text-sm font-semibold leading-6 text-gray-900">Cart {{ cartList.itemCount
                     > 0 ? ("[" + cartList.itemCount + "]") : ' ' }}
                 </RouterLink>
-                <RouterLink to="/" class="text-sm font-semibold leading-6 text-gray-900">Order</RouterLink>
+                <RouterLink to="/order" class="text-sm font-semibold leading-6 text-gray-900">Order</RouterLink>
             </div>
         </nav>
         <!-- Mobile menu, show/hide based on menu open state. -->
@@ -65,7 +65,7 @@ function toggleMenu() {
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Cart {{ cartList.itemCount
                                     > 0 ? ("[" + cartList.itemCount + "]") : ' ' }}</RouterLink>
-                            <RouterLink to="/"
+                            <RouterLink to="/order"
                                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
                                 Order</RouterLink>
                         </div>
